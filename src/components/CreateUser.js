@@ -1,8 +1,10 @@
 import React, { } from 'react';
 import axios from 'axios';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, DatePicker } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const CreateUser = () => {
+  const navigate = useNavigate();
   const onFinish = (values) => {
     axios.post('http://localhost:3000/api/users', values, {
       header: {
@@ -16,6 +18,8 @@ const CreateUser = () => {
     .catch(function (response) {
       console.log(response);
     });
+
+    navigate('/users/')
   };
 
   return(
@@ -65,7 +69,7 @@ const CreateUser = () => {
           },
         ]}
       >
-        <Input/>
+        <DatePicker/>
       </Form.Item>
       <Form.Item
         label='Phone number'
@@ -80,7 +84,7 @@ const CreateUser = () => {
         <Input/>
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType='submit'>
           Submit
         </Button>
       </Form.Item>

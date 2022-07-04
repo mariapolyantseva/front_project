@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios'
 import { Row, Table, Button } from 'antd';
 import 'antd/dist/antd.css';
-import CreateUser from './CreateUser';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 
 const UsersContainer = () => {
   const [users, setUsers] = useState('');
-  const componentDidMount = () => {
+  const getData = () => {
     axios.get('http://localhost:3000/api/users.json', {
     header: {
       'Access-Control-Allow-Origin': 'http://localhost:3000/api/users',
@@ -19,10 +18,22 @@ const UsersContainer = () => {
     .catch(error => console.log(error))
   }
 
+  const deleteUser = (value) => {
+    if (value !== undefined) {
+      axios.delete(`http://localhost:3000/api/users/${value}.json`, {
+      header: {
+        'Access-Control-Allow-Origin': 'http://localhost:3000/api/users',
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    })
+    }
+  }
+
   useEffect(() => {
     if (users === '') {
-      componentDidMount()
+      getData()
     }
+    console.log(users)
   }, [])
 
   return(
@@ -53,16 +64,21 @@ const UsersContainer = () => {
             title={'phone_number'}
             render={(record) => record.attributes.phone_number}
           />
+          <Table.Column
+            render={(record) => (
+              <Link to={`/users/${record.id}/edit`}>
+                <Button>Edit user</Button>
+              </Link>
+            )}
+          />
+          <Table.Column
+            render={(record) => (<Button onClick={() => deleteUser(record.id)}>Delete</Button>)}
+          />
         </Table>
       </Row>
-      <Router>
-        <Routes>
-          <Route exact path='/users/new' element={<CreateUser />}></Route>
-        </Routes>
-        <Link to='/users/new'>
-          <Button>Create user</Button>
-        </Link>
-      </Router>
+      <Link to='/users/new'>
+        <Button>Create user</Button>
+      </Link>
     </div>
   )
 }

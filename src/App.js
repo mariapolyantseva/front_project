@@ -1,10 +1,15 @@
+
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
-import UsersContainer from "./components/UsersContainer";
+import Switcher from './components/Switcher';
 
 function App() {
   return (
     <div>
-      <UsersContainer/>
+      {/* <UsersContainer/> */}
+      <Router >
+        <Switcher />
+      </Router>
     </div>
   );
 }
