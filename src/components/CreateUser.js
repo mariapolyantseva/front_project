@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom';
 const CreateUser = () => {
   const navigate = useNavigate();
   const onFinish = (values) => {
-    axios.post('http://localhost:3000/api/users', values, {
+    axios.post('https://marvelous-big-bend-72908.herokuapp.com/api/users', values, {
       header: {
-        'Access-Control-Allow-Origin': 'http://localhost:3000/api/users',
+        'Access-Control-Allow-Origin': 'https://marvelous-big-bend-72908.herokuapp.com/api/users',
         "Content-Type": "application/json; charset=utf-8"
       }
     })
@@ -19,7 +19,7 @@ const CreateUser = () => {
       console.log(response);
     });
 
-    navigate('/users/')
+    navigate('/')
   };
 
   return(

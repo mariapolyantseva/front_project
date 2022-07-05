@@ -8,7 +8,7 @@ const Switcher = () => {
   return(
     <Routes>
       <Route exact path='/users/new' element={<CreateUser />}/>
-      <Route exact path='/users' element={<UsersContainer />}/>
+      <Route exact path='/' element={<UsersContainer />}/>
       <Route exact path='/users/:id/edit' element={<EditUser/>}/>
     </Routes>
   )

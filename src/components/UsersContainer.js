@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import { Row, Table, Button } from 'antd';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 
 const UsersContainer = () => {
   const [users, setUsers] = useState('');
   const getData = () => {
-    axios.get('http://localhost:3000/api/users.json', {
+    axios.get('https://marvelous-big-bend-72908.herokuapp.com/api/users.json', {
     header: {
-      'Access-Control-Allow-Origin': 'http://localhost:3000/api/users',
+      'Access-Control-Allow-Origin': 'https://marvelous-big-bend-72908.herokuapp.com/api/users',
       "Content-Type": "application/json; charset=utf-8"
   }})
     .then(response => {
@@ -20,9 +20,9 @@ const UsersContainer = () => {
 
   const deleteUser = (value) => {
     if (value !== undefined) {
-      axios.delete(`http://localhost:3000/api/users/${value}.json`, {
+      axios.delete(`https://marvelous-big-bend-72908.herokuapp.com/api/users/${value}.json`, {
       header: {
-        'Access-Control-Allow-Origin': 'http://localhost:3000/api/users',
+        'Access-Control-Allow-Origin': 'https://marvelous-big-bend-72908.herokuapp.com/api/users',
         "Content-Type": "application/json; charset=utf-8"
       }
     })
@@ -33,8 +33,7 @@ const UsersContainer = () => {
     if (users === '') {
       getData()
     }
-    console.log(users)
-  }, [])
+  })
 
   return(
     <div>

@@ -6,7 +6,6 @@ import Switcher from './components/Switcher';
 function App() {
   return (
     <div>
-      {/* <UsersContainer/> */}
       <Router >
         <Switcher />
       </Router>
